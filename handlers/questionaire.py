@@ -16,7 +16,7 @@ classifier = torch.load(
 )
 
 
-@router.message(F.text.in_(["/predict", "Предсказания"]))
+@router.message(F.text.in_(["/predict", "Prediction"]))
 async def get_photo(message: Message, state: FSMContext):
     await state.set_state(Images.user_images)
     await message.answer("Upload an image to analyze", reply_markup=reply.cancel)
