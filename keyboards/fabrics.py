@@ -11,6 +11,9 @@ def paginator():
     builder = InlineKeyboardBuilder()
     builder.row(
         InlineKeyboardButton(
+            text="0", callback_data=Pagination(stage=0).pack()
+        ),
+        InlineKeyboardButton(
             text="1", callback_data=Pagination(stage=1).pack()
         ),
         InlineKeyboardButton(
@@ -22,14 +25,11 @@ def paginator():
         InlineKeyboardButton(
             text="4", callback_data=Pagination(stage=4).pack()
         ),
-        InlineKeyboardButton(
-            text="5", callback_data=Pagination(stage=5).pack()
-        ),
         width=5,
     )
     builder.row(
         InlineKeyboardButton(
-            text="Random", callback_data=Pagination(stage=0).pack()
+            text="Random", callback_data=Pagination(stage=5).pack()
         ),
         width=1,
     )

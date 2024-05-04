@@ -32,7 +32,7 @@ def prediction_wrapper(model, image, device=torch.device("cpu")):
 
 
 def choose_image_by_stage(stage):
-    if stage == 0:
+    if stage == 5:
         n = len(DIAGNOSIS)
         stage = random.randint(1, n)
     p = Path('data/images')
