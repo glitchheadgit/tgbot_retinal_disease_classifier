@@ -16,7 +16,7 @@ mkdir data
 ```
 
 3. Download [model file](https://drive.google.com/file/d/1rESkF6b0fyyaGn-Wk-0zP8dIXlc4RiTk) in it
-4. Create `.env` file with your telegram bot API token
+4. Create `.env` file with your Telegram bot API token
 ```bash
 echo BOT_TOKEN=your_token > .env
 ```
@@ -29,4 +29,4 @@ pip install -r requirements.txt
 python3 bot.py
 ```
 
-Information about model can be found [this repo](https://github.com/EkaterinShitik/Blindness_detection)
+Information about model can be found in [this repo](https://github.com/EkaterinShitik/Blindness_detection)
