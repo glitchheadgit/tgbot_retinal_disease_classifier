@@ -1,4 +1,4 @@
-# Telegram bot for ird prediction
+# Telegram bot for retinal disease prediction
 
 To run this bot take following steps:
 
