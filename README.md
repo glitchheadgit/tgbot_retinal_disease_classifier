@@ -1,6 +1,6 @@
 # Telegram bot for ird prediction
 
-To use this bot follow this steps:
+To run this bot take following steps:
 
 1. Clone this repo
 
