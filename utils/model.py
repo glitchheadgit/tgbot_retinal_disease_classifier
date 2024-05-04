@@ -3,20 +3,20 @@ from torchvision import transforms
 import numpy as np
 from PIL import Image
 
-def prediction_wrapper(model, image, device=torch.device('cpu')) :
-    diagnosis = {0: 'No DR', 
-                  1: 'Mild', 
-                  2: 'Moderate', 
-                  3: 'Severe', 
-                  4: 'Proliferative'}
+
+def prediction_wrapper(model, image, device=torch.device("cpu")):
+    diagnosis = {0: "No DR", 1: "Mild", 2: "Moderate", 3: "Severe", 4: "Proliferative"}
     image = Image.open(image)
     with torch.no_grad():
-        transform = transforms.Compose([
-                        transforms.Resize(size=(224,224)),
-                        transforms.ToTensor(),
-                        transforms.Normalize([0.4064, 0.2169, 0.0722], 
-                                             [0.2786, 0.1515, 0.0811])
-                        ])
+        transform = transforms.Compose(
+            [
+                transforms.Resize(size=(224, 224)),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    [0.4064, 0.2169, 0.0722], [0.2786, 0.1515, 0.0811]
+                ),
+            ]
+        )
         image_tensor = transform(image)
         image_sample = image_tensor.unsqueeze(0)
         image_sample = image_sample.to(device)

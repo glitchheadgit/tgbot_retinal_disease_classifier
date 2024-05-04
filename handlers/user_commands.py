@@ -10,14 +10,16 @@ router = Router()
 
 @router.message(CommandStart())
 async def start(message: Message):
-    await message.answer(f'Greetings, {message.from_user.first_name}!', reply_markup=reply.main)
+    await message.answer(
+        f"Greetings, {message.from_user.first_name}!", reply_markup=reply.main
+    )
 
 
-@router.message(F.text.in_(['/links', 'Links']))
+@router.message(F.text.in_(["/links", "Links"]))
 async def links(message: Message):
-    await message.answer('Links:', reply_markup=inline.links)
+    await message.answer("Links:", reply_markup=inline.links)
 
 
-@router.message(F.text.in_(['/gallery', 'Gallery']))
+@router.message(F.text.in_(["/gallery", "Gallery"]))
 async def gallery(message: Message):
-    await message.answer('Gallery:', reply_markup=fabrics.paginator())
+    await message.answer("Gallery:", reply_markup=fabrics.paginator())
