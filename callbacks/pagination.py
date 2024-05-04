@@ -1,25 +1,23 @@
 from contextlib import suppress
-from aiogram import Router, F
+from aiogram import Router, F, types
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.types import CallbackQuery
 
 from keyboards import fabrics
+from utils.model import choose_image_by_stage
 
 
 router = Router()
 
 
-@router.callback_query(fabrics.Pagination.filter(F.action.in_(["prev", "next"])))
+@router.callback_query(fabrics.Pagination.filter(F.stage.in_([0, 1, 2, 3, 4, 5])))
 async def pagination_handler(call: CallbackQuery, callback_data: fabrics.Pagination):
-    smiles = []
-    pn = int(callback_data.page)
-    if callback_data.action == "next":
-        page = pn + 1 if pn < len(smiles) - 1 else pn
-    else:
-        page = pn - 1 if pn > 0 else 0
-
     with suppress(TelegramBadRequest):
-        await call.message.edit_text(
-            f"{smiles[page][0]} {smiles[page][1]}", reply_markup=fabrics.paginator(page)
+        path = choose_image_by_stage(callback_data.stage)
+        image = types.FSInputFile(path)
+        await call.message.answer_photo(
+            image,
+            caption='Choose a disease stage:',
+            reply_markup=fabrics.paginator(),
         )
     await call.answer()

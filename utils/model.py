@@ -1,11 +1,14 @@
 import torch
+import random
+
+from pathlib import Path
 from torchvision import transforms
 import numpy as np
 from PIL import Image
 
+DIAGNOSIS = {0: "No DR", 1: "Mild", 2: "Moderate", 3: "Severe", 4: "Proliferative"}
 
 def prediction_wrapper(model, image, device=torch.device("cpu")):
-    diagnosis = {0: "No DR", 1: "Mild", 2: "Moderate", 3: "Severe", 4: "Proliferative"}
     image = Image.open(image)
     with torch.no_grad():
         transform = transforms.Compose(
@@ -25,8 +28,15 @@ def prediction_wrapper(model, image, device=torch.device("cpu")):
         probs = torch.nn.functional.softmax(logit, dim=-1).numpy()
         prob = np.max(probs)
         name_class = np.argmax(probs)
-    return diagnosis[name_class], prob
+    return f'{name_class} - {DIAGNOSIS[name_class]}', prob
 
 
-def choose_random_image(int):
-    pass
+def choose_image_by_stage(stage):
+    if stage == 0:
+        n = len(DIAGNOSIS)
+        stage = random.randint(1, n)
+    p = Path('data/images')
+    images = list(p.glob(f'{stage-1}*'))
+    idx = random.choice(range(len(images)-1))
+    return str(images[idx].absolute())
+

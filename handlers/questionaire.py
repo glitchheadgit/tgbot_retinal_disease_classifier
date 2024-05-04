@@ -14,9 +14,10 @@ router = Router()
 classifier = torch.load(
     "data/7_resnet152_whole_model.pt", map_location=torch.device("cpu")
 )
+DIAGNOSIS = {0: "No DR", 1: "Mild", 2: "Moderate", 3: "Severe", 4: "Proliferative"}
 
 
-@router.message(F.text.in_(["/predict", "Prediction"]))
+@router.message(F.text.in_(["/prediction", "Prediction"]))
 async def get_photo(message: Message, state: FSMContext):
     await state.set_state(Images.user_images)
     await message.answer("Upload an image to analyze", reply_markup=reply.cancel)
@@ -38,13 +39,13 @@ async def get_prediction(message: Message, state: FSMContext):
 @router.message(CommandStart())
 async def process_start_command(message: Message, state: FSMContext):
     await state.clear()
-    await message.answer("what are you interested in?", reply_markup=reply.main)
+    await message.answer("What are you interested in?", reply_markup=reply.main)
 
 
 @router.message(Images.user_images, ~F.photo)
 async def wrong_format_handler(message: Message, state: FSMContext):
     if message.text.lower() == "cancel request":
         await state.clear()
-        await message.answer("what are you interested in?", reply_markup=reply.main)
+        await message.answer("What are you interested in?", reply_markup=reply.main)
     else:
-        await message.answer("Send <b>images</b>\!")
+        await message.answer("Send <b>images</b>!")
