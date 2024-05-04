@@ -5,7 +5,7 @@ links = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="Notebook of model creation",
+                text="Model creation code",
                 url="https://github.com/EkaterinShitik/Blindness_detection/tree/main",
             )
         ],
