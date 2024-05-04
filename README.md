@@ -20,7 +20,11 @@ mkdir data
 ```bash
 echo BOT_TOKEN=your_token > .env
 ```
-5. Start `bot.py`
+5. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+7. Start `bot.py`
 ```bash
 python3 bot.py
 ```
