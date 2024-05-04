@@ -1,6 +1,6 @@
 # Telegram bot for ird prediction
 
-To use this bot follow this steps:
+To run this bot take following steps:
 
 1. Clone this repo
 
@@ -20,7 +20,11 @@ mkdir data
 ```bash
 echo BOT_TOKEN=your_token > .env
 ```
-5. Start `bot.py`
+5. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+7. Start `bot.py`
 ```bash
 python3 bot.py
 ```
