@@ -36,7 +36,7 @@ def choose_image_by_stage(stage):
         n = len(DIAGNOSIS)
         stage = random.randint(1, n)
     p = Path('data/images')
-    images = list(p.glob(f'{stage-1}*'))
+    images = list(p.glob(f'{stage}*'))
     idx = random.choice(range(len(images)-1))
     return str(images[idx].absolute())
 
