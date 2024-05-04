@@ -28,3 +28,5 @@ pip install -r requirements.txt
 ```bash
 python3 bot.py
 ```
+
+Information about model can be found [this repo](https://github.com/EkaterinShitik/Blindness_detection)
