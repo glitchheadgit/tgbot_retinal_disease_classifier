@@ -1,10 +1,10 @@
-# Telegram bot for retinal disease prediction
+# Telegram bot for retinal disease image classification
 
 To run this bot take following steps:
 
 1. Clone this repo
 ```bash
-git clone https://github.com/glitchheadgit/tgbot_ird_prediction
+git clone https://github.com/glitchheadgit/tgbot_retinal_disease_classifier
 ```
 
 2. Create `.env` file with your Telegram bot API token
