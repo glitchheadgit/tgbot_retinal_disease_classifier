@@ -23,7 +23,7 @@ async def links(message: Message):
 @router.message(F.text.in_(["/gallery", "Gallery"]))
 async def gallery(message: Message, bot: Bot):
     text = "Choose a disease stage:\n"
-    diagnosis = {0: "No DR", 1: "Mild", 2: "Moderate", 3: "Severe", 4: "Proliferative"}
+    diagnosis = {0: "No retinopathy", 1: "Mild", 2: "Moderate", 3: "Severe", 4: "Proliferative"}
     for k, v in diagnosis.items():
         text += f"{k} - {v}\n"
     await message.answer(text=text, reply_markup=fabrics.paginator())

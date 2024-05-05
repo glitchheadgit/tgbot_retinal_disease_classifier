@@ -6,7 +6,7 @@ from torchvision import transforms
 import numpy as np
 from PIL import Image
 
-DIAGNOSIS = {0: "No DR", 1: "Mild", 2: "Moderate", 3: "Severe", 4: "Proliferative"}
+DIAGNOSIS = {0: "No retinopathy", 1: "Mild", 2: "Moderate", 3: "Severe", 4: "Proliferative"}
 
 def prediction_wrapper(model, image, device=torch.device("cpu")):
     image = Image.open(image)
@@ -28,7 +28,7 @@ def prediction_wrapper(model, image, device=torch.device("cpu")):
         probs = torch.nn.functional.softmax(logit, dim=-1).numpy()
         prob = np.max(probs)
         name_class = np.argmax(probs)
-    return f'{name_class} - {DIAGNOSIS[name_class]}', prob
+    return f'{DIAGNOSIS[name_class]}', prob
 
 
 def choose_image_by_stage(stage):
